@@ -1,19 +1,20 @@
 //
-//  CryptoAppApp.swift
+//  Main.swift
 //  CryptoApp
 //
-//  Created by Chau Hoang Khoa on 5/09/2024.
+//  Created by Chau Hoang Khoa on 18/09/2024.
 //
 
 import SwiftUI
 
-@main
-struct CryptoAppApp: App {
+struct Main: View {
     
-    @StateObject private var vm = HomeViewModel()
+    @StateObject private var vm: HomeViewModel
     @State private var showLaunchView: Bool = true
     
-    init() {
+    init(vm: CoinDataServiceProtocol) {
+        _vm = StateObject(wrappedValue: HomeViewModel(coinDataService: vm))
+        
         /// Color for navigation title
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
@@ -24,8 +25,7 @@ struct CryptoAppApp: App {
         tableView.backgroundColor = UIColor.clear
     }
     
-    var body: some Scene {
-        WindowGroup {
+    var body: some View {
             ZStack {
                 NavigationStack {
                     HomeView()
@@ -40,6 +40,5 @@ struct CryptoAppApp: App {
                 }
                 .zIndex(2.0) /// It mins it'll be the second ZStack for transition
             }
-        }
     }
 }
