@@ -3,12 +3,11 @@
 //  CryptoApp
 //
 //  Created by Chau Hoang Khoa on 7/09/2024.
-// .refreshable() add
 
 import Foundation
 import Combine
 
-class HomeViewModel: ObservableObject {
+final class HomeViewModel: ObservableObject {
     
     @Published var statistic: [StatisticModel] = []
     @Published var allCoins: [CoinModel] = []
